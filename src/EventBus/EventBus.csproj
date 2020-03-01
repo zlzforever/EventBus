@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>EasyEventBus</PackageId>
+    </PropertyGroup>
+    <Import Project="../../package.props" />
+
+</Project>
