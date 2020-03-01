@@ -21,5 +21,7 @@ namespace EventBus
         Task PublishAsync(object @event);
 
         IEnumerable<Type> GetHandlerTypes<TEvent>() where TEvent : class, IEvent;
+        
+        long HandleCount { get; }
     }
 }

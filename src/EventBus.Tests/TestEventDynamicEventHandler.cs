@@ -12,7 +12,6 @@ namespace EventBus.Tests
         {
             var obj = (TestEvent) @event;
             Name = obj.Name;
-            Console.WriteLine(JsonConvert.SerializeObject(@event));
             return Task.CompletedTask;
         }
     }

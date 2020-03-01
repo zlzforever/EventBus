@@ -15,6 +15,7 @@
       <e p="package.props" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="publish.sh" t="Include" />
+      <e p="readme.md" t="Include" />
       <e p="Solution Items" t="Include" />
       <e p="src/EventBus" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -52,6 +53,33 @@
         </e>
         <e p="ServiceCollectionExtensions.cs" t="Include" />
       </e>
+      <e p="src/EventBus.RabbitMQ" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="EventBus.RabbitMQ.csproj" t="IncludeRecursive" />
+        <e p="IRabbitMQOptions.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="EventBus.RabbitMQ.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="RabbitMqEventBus.cs" t="Include" />
+        <e p="RabbitMqOptions.cs" t="Include" />
+      </e>
+      <e p="src/EventBus.RabbitMQ.DependencyInjection" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="EventBus.RabbitMQ.DependencyInjection.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="EventBus.RabbitMQ.DependencyInjection.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="RabbitMqOptions.cs" t="Include" />
+        <e p="ServiceCollectionExtensions.cs" t="Include" />
+      </e>
       <e p="src/EventBus.Tests" t="IncludeRecursive">
         <e p="BasicTests.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
@@ -64,10 +92,13 @@
             </e>
           </e>
         </e>
+        <e p="RabbitMQTests.cs" t="Include" />
         <e p="TestEvent.cs" t="Include" />
         <e p="TestEventDynamicEventHandler.cs" t="Include" />
-        <e p="TestEventHandler.cs" t="Include" />
+        <e p="TestEventHandler1.cs" t="Include" />
         <e p="TestEventHandler2.cs" t="Include" />
+        <e p="TestEventHandler3.cs" t="Include" />
+        <e p="TestEventHandler4.cs" t="Include" />
       </e>
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />

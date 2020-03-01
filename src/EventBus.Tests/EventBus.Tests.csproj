@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EventBus.DependencyInjection\EventBus.DependencyInjection.csproj" />
+      <ProjectReference Include="..\EventBus.RabbitMQ\EventBus.RabbitMQ.csproj" />
       <ProjectReference Include="..\EventBus\EventBus.csproj" />
     </ItemGroup>
 

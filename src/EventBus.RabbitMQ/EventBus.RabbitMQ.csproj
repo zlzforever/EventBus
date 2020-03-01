@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>EasyEventBus.RabbitMQ</PackageId>
+    </PropertyGroup>
+    <Import Project="../../package.props" />
+    <ItemGroup>
+        <ProjectReference Include="..\EventBus\EventBus.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="RabbitMQ.Client" Version="5.1.2" />
+        <PackageReference Include="MessagePack" Version="2.1.90" />
+    </ItemGroup>
+</Project>

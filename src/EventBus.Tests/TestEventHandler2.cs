@@ -11,7 +11,6 @@ namespace EventBus.Tests
         public Task HandleAsync(TestEvent @event)
         {
             Name = @event.Name;
-            Console.WriteLine(JsonConvert.SerializeObject(@event));
             return Task.CompletedTask;
         }
     }
