@@ -54,25 +54,13 @@ namespace EventBus.RabbitMQ
 			_connection = connectionFactory.CreateConnection();
 		}
 
-		public override bool Register<TEvent, TEventHandler>()
+		public override bool Register(Type eventType, Type handlerType)
 		{
-			var registered = base.Register<TEvent, TEventHandler>();
+			var registered = base.Register(eventType, handlerType);
 			if (registered)
 			{
-				var topic = GenerateTopic(typeof(TEvent));
+				var topic = GenerateTopic(eventType);
 
-				return RegisterRabbitMq(topic);
-			}
-
-			return false;
-		}
-
-		public override bool Register<TEvent>(Type handlerType)
-		{
-			var registered = base.Register<TEvent>(handlerType);
-			if (registered)
-			{
-				var topic = GenerateTopic(typeof(TEvent));
 				return RegisterRabbitMq(topic);
 			}
 

@@ -25,28 +25,37 @@ namespace EventBus
 		}
 
 		public virtual bool Register<TEvent, TEventHandler>()
-			where TEvent : class, IEvent
+			where TEvent : Event
 			where TEventHandler : IEventHandler<TEvent>
 		{
 			var handlerType = typeof(TEventHandler);
 			return Register<TEvent>(handlerType);
 		}
 
-		public virtual bool Register<TEvent>(Type handlerType) where TEvent : class, IEvent
+		public virtual bool Register<TEvent>(Type handlerType) where TEvent : Event
 		{
+			return Register(typeof(TEvent), handlerType);
+		}
+
+		public virtual bool Register(Type eventType, Type handlerType)
+		{
+			if (eventType == null)
+			{
+				throw new ArgumentNullException(nameof(eventType));
+			}
+
 			if (handlerType == null)
 			{
 				throw new ArgumentNullException(nameof(handlerType));
 			}
 
-			var handlerInterfaces = new[]
+			if (!eventType.IsEvent())
 			{
-				typeof(IEventHandler<TEvent>),
-				typeof(IDynamicEventHandler)
-			};
-			if (handlerInterfaces.Any(x => x.IsAssignableFrom(handlerType)))
+				throw new ArgumentException("Event should inherit from Event and be a class ");
+			}
+
+			if (handlerType.IsHandler())
 			{
-				var eventType = typeof(TEvent);
 				return _eventHandlerTypeStore.Add(eventType, handlerType);
 			}
 			else
@@ -55,13 +64,13 @@ namespace EventBus
 			}
 		}
 
-		public virtual bool Unregister<TEvent>() where TEvent : class, IEvent
+		public virtual bool Unregister<TEvent>() where TEvent : Event
 		{
 			var eventType = typeof(TEvent);
 			return _eventHandlerTypeStore.Remove(eventType);
 		}
 
-		public virtual bool Unregister<TEvent, TEventHandler>() where TEvent : class, IEvent
+		public virtual bool Unregister<TEvent, TEventHandler>() where TEvent : Event
 			where TEventHandler : IEventHandler<TEvent>
 		{
 			var eventType = typeof(TEvent);
@@ -104,12 +113,14 @@ namespace EventBus
 			}
 		}
 
-		public IEnumerable<Type> GetHandlerTypes<TEvent>() where TEvent : class, IEvent
+		public IEnumerable<Type> GetHandlerTypes<TEvent>() where TEvent : Event
 		{
 			var eventType = typeof(TEvent);
 			return _eventHandlerTypeStore.GetHandlerTypes(eventType);
 		}
 
 		public long HandleCount => _handleCount;
+
+		public IEventHandlerTypeStore EventHandlerTypeStore => _eventHandlerTypeStore;
 	}
 }

@@ -1,6 +1,6 @@
 namespace EventBus.Tests
 {
-    public class TestEvent : Event, IEvent
+    public class TestEvent : Event
     {
         public string Name { get; set; }
 

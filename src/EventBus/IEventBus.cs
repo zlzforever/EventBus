@@ -4,24 +4,28 @@ using System.Threading.Tasks;
 
 namespace EventBus
 {
-    public interface IEventBus
-    {
-        bool Register<TEvent, TEventHandler>()
-            where TEvent : class, IEvent
-            where TEventHandler : IEventHandler<TEvent>;
+	public interface IEventBus
+	{
+		bool Register<TEvent, TEventHandler>()
+			where TEvent : Event
+			where TEventHandler : IEventHandler<TEvent>;
 
-        bool Register<TEvent>(Type handlerType)
-            where TEvent : class, IEvent;
+		bool Register<TEvent>(Type handlerType)
+			where TEvent : Event;
 
-        bool Unregister<TEvent>() where TEvent : class, IEvent;
+		bool Register(Type eventType, Type handlerType);
 
-        bool Unregister<TEvent, TEventHandler>() where TEvent : class, IEvent
-            where TEventHandler : IEventHandler<TEvent>;
+		bool Unregister<TEvent>() where TEvent : Event;
 
-        Task PublishAsync(object @event);
+		bool Unregister<TEvent, TEventHandler>() where TEvent : Event
+			where TEventHandler : IEventHandler<TEvent>;
 
-        IEnumerable<Type> GetHandlerTypes<TEvent>() where TEvent : class, IEvent;
-        
-        long HandleCount { get; }
-    }
+		Task PublishAsync(object @event);
+
+		IEnumerable<Type> GetHandlerTypes<TEvent>() where TEvent : Event;
+
+		long HandleCount { get; }
+
+		IEventHandlerTypeStore EventHandlerTypeStore { get; }
+	}
 }

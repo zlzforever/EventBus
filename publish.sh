@@ -2,6 +2,8 @@
 export NUGET_SERVER=https://api.nuget.org/v3/index.json
 rm -rf src/EventBus/bin/Release
 rm -rf src/EventBus.DependencyInjection/bin/Release
+rm -rf src/EventBus.RabbitMQ/bin/Release
+rm -rf src/EventBus.RabbitMQ.DependencyInjection/bin/Release
 
 dotnet build -c Release
 dotnet pack -c Release
